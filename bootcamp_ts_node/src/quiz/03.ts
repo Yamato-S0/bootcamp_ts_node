@@ -51,7 +51,7 @@ type PasswordRequirementResult =
   | "missingSmallLetter"
   | "missingCapitalLetter";
 
-const checkPasswordRequirement = (/* ココを定義してください */): PasswordRequirementResult => {
+const checkPasswordRequirement = (password: string, option?: PasswordRequirementOption): PasswordRequirementResult => {
   if (option?.requireNumbers) {
     if (!/\d/.test(password)) {
       return "missingNumber";
