@@ -1,6 +1,6 @@
 import http from "node:http";
-import fs from "node:fs";
-import path from "node:path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 const server = http.createServer();
 
 server.on("request", async (req, res) => {
