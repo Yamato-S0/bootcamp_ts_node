@@ -28,7 +28,7 @@ function includes<Type>(array: Type[], value: Type): boolean {
     }
   }
   return false;
-};
+}
 
 const includesOk1 = includes([1, 2, 3], 4);
 const includesOk2: boolean = includes(["a", "b"], "c");
@@ -51,7 +51,10 @@ type PasswordRequirementResult =
   | "missingSmallLetter"
   | "missingCapitalLetter";
 
-const checkPasswordRequirement = (password: string, option?: PasswordRequirementOption): PasswordRequirementResult => {
+const checkPasswordRequirement = (
+  password: string,
+  option?: PasswordRequirementOption,
+): PasswordRequirementResult => {
   if (option?.requireNumbers) {
     if (!/\d/.test(password)) {
       return "missingNumber";

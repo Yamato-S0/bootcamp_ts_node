@@ -9,7 +9,10 @@ let server;
 let closedPromise;
 describe("a server", () => {
   before(async () => {
-    server = spawn(`PORT=${port} node ./out/server.js`, { shell: true, detached: true });
+    server = spawn(`PORT=${port} node ./out/server.js`, {
+      shell: true,
+      detached: true,
+    });
     closedPromise = new Promise((resolve) => server.on("close", resolve));
     await new Promise((resolve) => {
       server.stdout.on("data", (data) => {
