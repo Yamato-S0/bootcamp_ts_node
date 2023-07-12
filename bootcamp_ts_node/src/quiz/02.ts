@@ -29,7 +29,7 @@ const array1_2: Array1 = [1, 2, 3, 4, 5];
 const array1_3: Array1 = ["string", "is", "not", "allowed"];
 
 // Q: number か string が入る配列、Array2 を定義してください
-type Array2 = (number | string)[]
+type Array2 = Array<number | string>
 const array2_1: Array2 = [1, "string", 2, "is", 3, "allowed"];
 // @ts-expect-error boolean is not allowed for the `Array2`.
 const array2_2: Array2 = [true, false, true, false];
