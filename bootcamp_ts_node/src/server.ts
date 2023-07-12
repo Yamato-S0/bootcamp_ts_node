@@ -27,7 +27,7 @@ server.on("request", async (req, res) => {
         contentType = "image/x-icon";
       }
 
-      res.writeHead(200, { "Content-type": contentType});
+      res.writeHead(200, { "Content-type": contentType });
       res.write(data);
       res.end();
     }
@@ -43,7 +43,7 @@ server.on("listening", () => {
 
 // Start listening 12345 port of localhost (127.0.0.1).
 //server.listen(12345, () => {
-  //console.log("listening on http://localhost:12345/");
+//console.log("listening on http://localhost:12345/");
 //});
 const port = process.env.PORT || 12345;
 server.listen(port, () => {
