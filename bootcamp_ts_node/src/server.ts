@@ -12,7 +12,7 @@ server.on("request", async (req, res) => {
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      res.writeHead(404, { "Content-type": "text/plain" });
+      res.writeHead(404);
       res.end();
     } else {
       // ファイルの拡張子に基づいて適切なContent-Typeを設定する
@@ -27,7 +27,7 @@ server.on("request", async (req, res) => {
         contentType = "image/x-icon";
       }
 
-      res.writeHead(200, { "Content-type": contentType });
+      res.writeHead(200, { "Content-Type": contentType });
       res.write(data);
       res.end();
     }
