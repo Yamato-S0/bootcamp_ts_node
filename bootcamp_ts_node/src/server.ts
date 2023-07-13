@@ -8,33 +8,42 @@ server.on("request", async (req, res) => {
   // Content-Type is important for browsers.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
   // リクエストされたパスを取得
-  const filePath = path.join(__dirname, "public", String(req.url));
-
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(404);
-      res.end();
-    } else {
-      // ファイルの拡張子に基づいて適切なContent-Typeを設定する
-      let contentType = "text/plain";
-      if (filePath.endsWith(".html")) {
-        contentType = "text/html";
-      } else if (filePath.endsWith(".jpg")) {
-        contentType = "image/jpeg";
-      } else if (filePath.endsWith(".json")) {
-        contentType = "text/json";
-      } else if (filePath.endsWith(".ico")) {
-        contentType = "image/x-icon";
-      }
-
-      res.writeHead(200, { "Content-Type": contentType });
-      res.write(data);
-      res.end();
-    }
-  });
-  //res.writeHead(200, { "content-type": "text/plain" });
-  //res.write("hello!\n");
-  //res.end();
+  if (req.url === undefined) {
+    res.end();
+    return;
+  }
+  const filePath = path.join(path.resolve(), "public", req.url);
+    console.log("filePath: ", filePath);
+    
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404, { "Content-Type": "text/plain" });
+            res.write("not found!");
+            res.end();
+        }
+        else {
+            // ファイルの拡張子に基づいて適切なContent-Typeを設定する
+            let contentType = "text/plain";
+            if (filePath.endsWith(".html")) {
+                contentType = "text/html";
+            }
+            else if (filePath.endsWith(".jpg")) {
+                contentType = "image/jpeg";
+            }
+            else if (filePath.endsWith(".json")) {
+                contentType = "text/json";
+            }
+            else if (filePath.endsWith(".ico")) {
+                contentType = "image/x-icon";
+            }
+            res.writeHead(200, { "Content-Type": contentType });
+            res.write(data);
+            res.end();
+        }
+    });
+    res.writeHead(200, { "content-type": "text/plain" });
+    res.write("hello!\n");
+    res.end();
 });
 
 server.on("listening", () => {
